@@ -16,14 +16,13 @@ const Login = () => {
       const res = await axios.post(
         BASE_URL + "/login",
         {
-          emailId: emailId,
-          password: password,
+          emailId,
+          password,
         },
         { withCredentials: true }
       );
-      console.log(res.data);
       dispatch(addUser(res.data));
-      navigate("/");
+      return navigate("/");
     } catch (err) {
       console.error(err);
     }
@@ -37,7 +36,7 @@ const Login = () => {
           <div>
             <label className="form-control w-full max-w-xs my-2">
               <div className="label">
-                <span className="label-text">EmailId</span>
+                <span className="label-text">Email Id:</span>
               </div>
               <input
                 type="text"
