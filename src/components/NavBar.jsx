@@ -6,15 +6,15 @@ import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
 
 const NavBar = () => {
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((store) => store.user);
 
   const handleLogout = async () => {
     try {
-      await axios.post(BASE_URL + "/logout");
+      await axios.post(BASE_URL + "/logout", {},{withCredentials:true});
       dispatch(removeUser());
-      navigate("/login");
+      return navigate("/login");
     } catch (err) {
       console.log(err.message);
     }

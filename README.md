@@ -1,4 +1,4 @@
-# DevTinder
+# DevLink
 
 - Created vite+ react application
 - remove uneccesary code and create hello world app
