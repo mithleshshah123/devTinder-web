@@ -9,10 +9,10 @@ const EditProfile = ({ user }) => {
   const [firstName, setfirstName] = useState(user.firstName);
   const [lastName, setlastName] = useState(user.lastName);
   const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
-  const [about, setAbout] = useState(user.about);
-  const [age, setAge] = useState(user.age);
-  const [gender, setGender] = useState(user.gender);
-  const [skills, setSkills] = useState(user.skills);
+  const [about, setAbout] = useState(user.about || "");
+  const [age, setAge] = useState(user.age || "");
+  const [gender, setGender] = useState(user.gender ||"");
+  const [skills, setSkills] = useState(user.skills || "");
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const [showToast ,setShowToast] = useState(false);
@@ -31,7 +31,6 @@ const EditProfile = ({ user }) => {
         setShowToast(false);
       },3000);
     } catch (err) {
-      console.error(err);
       setError(err?.response?.data || "Failed to update profile");
     }
   };
