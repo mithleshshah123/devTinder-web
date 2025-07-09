@@ -39,7 +39,11 @@
        - pm2 list , pm2 flush <name>, pm2 stop <name>, pm2 delete <name>
        - config nginx - /etc/nginx/sites-avilable/default
        - restart nginx -  sudo systemctl restart nginx
+<<<<<<< HEAD
        - Modify the BASEURL in frotned project to "/api"
+=======
+       - Modify the BASEURL in frotned project to /api
+>>>>>>> 650c8f08db825f1dff04360771bb27025ff1af08
 
 # Nginx config
 
