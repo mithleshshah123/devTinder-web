@@ -1,16 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
+
+const persistedUser = JSON.parse(localStorage.getItem("user")) || null;
+
+const initialState = persistedUser || null;
 
 const userSlice = createSlice({
   name: "user",
-  initialState: null,
+  initialState,
   reducers: {
-    addUser: (state, action) => {
-      return action.payload;
-    },
-    // eslint-disable-next-line no-unused-vars
-    removeUser: (state, action) => {
-      return null;
-    },
+    addUser: (state, action) => action.payload,
+    removeUser: () => null,
   },
 });
 
