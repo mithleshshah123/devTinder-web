@@ -5,29 +5,33 @@ import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
 
-const NavBar = () => {
+const NavBar = ({ minimal }) => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    try {
-      await axios.post(BASE_URL + "/logout", {},{withCredentials:true});
-      dispatch(removeUser());
-      return navigate("/login");
-    } catch (err) {
-      //err
-    }
+      try {
+        await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
+        dispatch(removeUser());
+        localStorage.removeItem("user");
+        navigate("/", { replace: true }); // absolute Welcome page
+      } catch (err) {
+        console.error(err);
+      }
   };
 
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost text-xl">
-          🧑‍💻DevLink
+        {/* Redirect logo based on login status */}
+        <Link to={user ? "/feed" : "/"} className="btn btn-ghost text-xl">
+          🧑‍💻 DevLink
         </Link>
       </div>
-      {user && (
+
+      {/* If minimal is true, don't show menu links */}
+      {!minimal && user && (
         <div className="flex gap-2">
           <div className="form-control mt-2">Welcome, {user.firstName}</div>
           <div className="dropdown dropdown-end">

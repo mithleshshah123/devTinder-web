@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailId, setEmailId] = useState("tommy@gmail.com");
+  const [password, setPassword] = useState("Tommy@12345");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -27,7 +27,9 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data));
-      return navigate("/");
+      localStorage.setItem("user", JSON.stringify(res.data));
+      return navigate("/feed");
+
     } catch (err) {
       setError(err?.response?.data || "Something went wrong!");
       console.error(err);
@@ -43,6 +45,7 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data.data));
+      localStorage.setItem("user", JSON.stringify(res.data.data));
       return navigate("/profile");
     } catch (err) {
       //err
@@ -113,7 +116,7 @@ const Login = () => {
                 <span className="label-text my-1">Password</span>
               </div>
               <input
-                type="text"
+                type="password"
                 value={password}
                 placeholder="Enter Your Password"
                 className="input input-bordered w-full max-w-xs mb-3"

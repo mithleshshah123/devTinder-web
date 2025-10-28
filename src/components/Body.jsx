@@ -31,10 +31,12 @@ const Body = () => {
   }, []);
 
   return (
-    <div>
-      <NavBar />
-      <Outlet />
-      <Footer />
+    <div className="flex flex-col min-h-screen">
+      <NavBar /> {/* full navbar */}
+      <main className="flex-1 overflow-auto">
+        <Outlet /> {/* inside-app pages like Feed, Profile, EditProfile */}
+      </main>
+      <Footer /> {/* full footer */}
     </div>
   );
 };
