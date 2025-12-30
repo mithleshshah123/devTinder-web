@@ -87,3 +87,27 @@ Body NavBar Route=/ => Feed Route=/login => Login Route=/connetions => Connectio
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
+
+# Adding a custom domain name
+
+    - puchased domain name from godaddy
+    - signup on cloudflare & add a new domian name
+    - chnage the nameserver on godaddy and point it to cloudflare
+    - wait for sometime till your nameservers are updated -15 minutes
+    - DNS record: A devlink.in 21.32.363.356
+    - Enable SSL for website
+
+# Sending Emial via SES
+    - Create a IAM user
+    - Give Access to AmazoneSESFullAccess
+    - Amazone SES: Create an Identity
+    - Verify your domain name
+    - Verify an Email Address
+    - Install AWS SDK - v3
+    - Code Example - https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/ses#code-examples
+    - Setup SesClient
+    - Access Credentials should be created in IAm under SecurityCredentials Tab
+    - Add the credentials to the env file
+    - Write code for SESClient
+    - Write code for Sending email address
+    - Make the email dynamic by passing more params to the run function
